@@ -9,3 +9,70 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Status {
+  CREATED
+  WAITING_PAYMENT
+  APROVED
+  SENT
+  DELIVERED
+  CANCELED
+}
+
+model Address {
+  id           String @id @default(cuid())
+  street       String
+  neighborhood String
+  city         String
+  state        String
+  postalCode   String
+  userId       String
+  user         User   @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String
+  addresses Address[]
+  orders    Order[]
+}
+
+model Perfumery {
+  id      String   @id @default(cuid())
+  name    String   @unique
+  parfums Parfum[]
+}
+
+model Parfum {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  size        Int
+  perfumeryId String
+  perfumery   Perfumery @relation(fields: [perfumeryId], references: [id])
+  stock       Stock[]
+  orders      Order[]
+}
+
+model Stock {
+  id       String @id @default(cuid())
+  quantity Int
+  parfumId String
+  parfum   Parfum @relation(fields: [parfumId], references: [id])
+}
+
+model Order {
+  id         String    @id @default(cuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id])
+  parfumId   String
+  parfum     Parfum    @relation(fields: [parfumId], references: [id])
+  address    String
+  sentDate   DateTime  @default(now())
+  reciveDate DateTime?
+  cancelDate DateTime?
+  subTotal   Float
+  status     Status
+}
