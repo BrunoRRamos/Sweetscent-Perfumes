@@ -43,6 +43,8 @@ model User {
 model Perfumery {
   id      String   @id @default(cuid())
   name    String   @unique
+  // Adicinar Enum para tipo (nicho, nacional e designer)
+  // Adicinar pais de origem
   parfums Parfum[]
 }
 

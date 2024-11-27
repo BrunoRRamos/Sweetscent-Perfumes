@@ -1,5 +1,5 @@
 import { Perfumery } from "@prisma/client";
-import { addParfumToPerfumery, createPerfumery, deletePerfumery, getAllPerfumeries, getPerfumeryByName, putPerfumery } from "./service";
+import { createPerfumery, deletePerfumery, getAllPerfumeries, getPerfumeryByName, putPerfumery } from "./service";
 import { Request, Response } from "express";
 import { HttpCodes } from './../../utils/httpCodes';
 
@@ -38,11 +38,4 @@ export async function handleDeletePerfumery(request: Request, response: Response
     const deletedPerfumery = await deletePerfumery(id);
 
     return response.status(HttpCodes.NO_CONTENT).json(deletedPerfumery);
-}
-
-export async function handleAddParfumToPerfumery(request: Request, response: Response) {
-    const { perfumeryId, parfumId } = request.params;
-    const perfumery = await addParfumToPerfumery(perfumeryId, parfumId);
-
-    return response.status(HttpCodes.OK).json(perfumery);
 }

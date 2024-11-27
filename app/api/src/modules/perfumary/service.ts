@@ -67,23 +67,3 @@ export async function deletePerfumery(id: string): Promise<Perfumery> {
 
     return deletedPerfumery;
 }
-
-export async function addParfumToPerfumery(perfumeryId: string, parfumId: string): Promise<Perfumery> {
-    verifyPerfumery(perfumeryId);
-    verifyParfum(parfumId);
-
-    const updatedPerfumery = await prisma.perfumery.update({
-        where: {
-            id: perfumeryId,
-        },
-        data: {
-            parfums: {
-                connect: {
-                    id: parfumId,
-                },
-            },
-        },
-    });
-
-    return updatedPerfumery;
-}
