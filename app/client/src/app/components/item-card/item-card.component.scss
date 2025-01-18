@@ -1,0 +1,16 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 8px;
+    width: 15rem;
+    height: 25rem;
+    padding: 1rem;
+    cursor: pointer;
+    border-width: 1px;
+}
+
+.card:hover {
+    filter: blur(1.5px);
+}

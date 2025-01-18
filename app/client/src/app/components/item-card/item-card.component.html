@@ -1,0 +1,21 @@
+<div class="card shadow-xl">
+  <span class="flex justify-center">
+    <img class="w-20" src="assets/images/eros.png" alt="parfum" />
+  </span>
+  <article>
+    <div class="flex flex-col justify-between mb-5 mt-5">
+      <span class="text-xl font-semibold mb-2">{{ name }}</span>
+      <p class="font-normal text-gray-400 text-sm">{{ description }}</p>
+    </div>
+    <div>
+      <span class="font-semibold text-gray-500 text-sm">Apartir de</span>
+      <div>
+        <span class="font-semibold text-3xl mr-4">{{ price }}</span>
+        <span class="font-semibold text-gray-500 text-sm">no PIX</span>
+      </div>
+      <span class="font-normal text-gray-400 text-sm"
+        >ou 10x {{ creditCardPrice }}</span
+      >
+    </div>
+  </article>
+</div>
